@@ -5,8 +5,10 @@
 
 module counter_testbench();
     reg clock = 0;
-    reg ce;
+    reg ce = 0;
     wire [3:0] LEDS;
+
+    integer  iter;
 
     counter ctr (
         .clk(clock),
@@ -29,8 +31,11 @@ module counter_testbench();
 
         // TODO: Change input values and step forward in time to test
         // your counter and its clock enable/disable functionality.
-
-
+        for(iter=0;iter<100;iter=iter+1) begin
+            repeat(30) @(posedge clock);
+            ce <= ~ce; 
+        end
+    
         `ifndef IVERILOG
             $vcdplusoff;
         `endif

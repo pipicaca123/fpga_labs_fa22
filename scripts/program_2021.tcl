@@ -2,8 +2,8 @@ source ../target.tcl
 open_hw_manager
 
 connect_hw_server -url localhost:3121 -allow_non_jtag
-current_hw_target [get_hw_targets */xilinx_tcf/Digilent/*]
-set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Digilent/*]
+current_hw_target [get_hw_targets */xilinx_tcf/Xilinx/*]
+set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Xilinx/*]
 open_hw_target
 
 current_hw_device [get_hw_devices xc7z*]
@@ -30,10 +30,10 @@ close_hw_manager
 # INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
 # INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
 # INFO: [Labtools 27-3414] Connected to existing cs_server.
-# current_hw_target [get_hw_targets */xilinx_tcf/Digilent/003017A8B74BA]
-# set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Digilent/003017A8B74BA]
+# current_hw_target [get_hw_targets */xilinx_tcf/Xilinx/003017A8B74BA]
+# set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Xilinx/003017A8B74BA]
 # open_hw_target
-# INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/003017A8B74BA
+# INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Xilinx/003017A8B74BA
 # current_hw_device [get_hw_devices xc7z020_1]
 # refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7z020_1] 0]
 # INFO: [Labtools 27-1434] Device xc7z020 (JTAG device index = 1) is programmed with a design that has no supported debug core(s) in it.

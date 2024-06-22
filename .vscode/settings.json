@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "*.v": "verilog",
+        "*.sv": "systemverilog"
+    },
+    "verilogFormatter.useSystemVerilog": true,
+    "verilogFormatter.formatOnSave": true
+}
