@@ -1,0 +1,419 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2009.vpi";
+S_0x640aeda4fa60 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x640aeda4fbf0 .scope module, "edge_detector_tb" "edge_detector_tb" 3 6;
+ .timescale -9 -9;
+v0x640aeda33f00_0 .net *"_ivl_12", 0 0, L_0x640aeda782b0;  1 drivers
+v0x640aeda73c30_0 .net *"_ivl_18", 0 0, L_0x640aeda78350;  1 drivers
+v0x640aeda73d10_0 .net *"_ivl_24", 0 0, L_0x640aeda78480;  1 drivers
+v0x640aeda73dd0_0 .net *"_ivl_27", 0 0, L_0x640aeda78520;  1 drivers
+v0x640aeda73eb0_0 .var "clk", 0 0;
+v0x640aeda73fa0_0 .var "done", 0 0;
+v0x640aeda74040_0 .net "edge_detect_pulse", 1 0, v0x640aeda31310_0;  1 drivers
+v0x640aeda74100_0 .var "signal_in", 1 0;
+v0x640aeda741d0_0 .var "tests_failed", 31 0;
+E_0x640aeda40c80 .event posedge, L_0x640aeda78520, L_0x640aeda78480;
+E_0x640aeda22f30 .event posedge, L_0x640aeda78350;
+E_0x640aeda58180 .event posedge, L_0x640aeda782b0;
+L_0x640aeda782b0 .part v0x640aeda31310_0, 0, 1;
+L_0x640aeda78350 .part v0x640aeda31310_0, 1, 1;
+L_0x640aeda78480 .part v0x640aeda31310_0, 0, 1;
+L_0x640aeda78520 .part v0x640aeda31310_0, 1, 1;
+S_0x640aeda52650 .scope module, "DUT" "edge_detector" 3 17, 4 1 0, S_0x640aeda4fbf0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 2 "signal_in";
+    .port_info 2 /OUTPUT 2 "edge_detect_pulse";
+P_0x640aeda52830 .param/l "WIDTH" 0 4 2, +C4<00000000000000000000000000000010>;
+v0x640aeda30b40_0 .net "clk", 0 0, v0x640aeda73eb0_0;  1 drivers
+v0x640aeda30f10_0 .net "edge_detect_pulse", 1 0, v0x640aeda31310_0;  alias, 1 drivers
+v0x640aeda31310_0 .var "edp_buf", 1 0;
+v0x640aeda31710_0 .var "prev_state", 1 0;
+v0x640aeda32ff0_0 .net "signal_in", 1 0, v0x640aeda74100_0;  1 drivers
+E_0x640aeda585a0 .event posedge, v0x640aeda30b40_0;
+S_0x640aeda4fd80 .scope module, "z1top" "z1top" 5 3;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "CLK_125MHZ_FPGA";
+    .port_info 1 /INPUT 4 "BUTTONS";
+    .port_info 2 /INPUT 2 "SWITCHES";
+    .port_info 3 /OUTPUT 6 "LEDS";
+    .port_info 4 /OUTPUT 1 "AUD_PWM";
+    .port_info 5 /OUTPUT 1 "AUD_SD";
+P_0x640aeda573f0 .param/l "B_PULSE_CNT_MAX" 1 5 17, +C4<00000000000000000000000011001000>;
+P_0x640aeda57430 .param/l "B_SAMPLE_CNT_MAX" 1 5 15, +C4<00000000000000001111010000100100>;
+L_0x74a4e56d00a8 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x640aeda778b0_0 .net "AUD_PWM", 0 0, L_0x74a4e56d00a8;  1 drivers
+v0x640aeda77980_0 .net "AUD_SD", 0 0, L_0x640aeda78840;  1 drivers
+o0x74a4e5a704f8 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v0x640aeda77a20_0 .net "BUTTONS", 3 0, o0x74a4e5a704f8;  0 drivers
+o0x74a4e5a702b8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x640aeda77b40_0 .net "CLK_125MHZ_FPGA", 0 0, o0x74a4e5a702b8;  0 drivers
+v0x640aeda77be0_0 .net "LEDS", 5 0, L_0x640aeda78770;  1 drivers
+o0x74a4e5a709d8 .functor BUFZ 2, C4<zz>; HiZ drive
+v0x640aeda77d10_0 .net "SWITCHES", 1 0, o0x74a4e5a709d8;  0 drivers
+L_0x74a4e56d0018 .functor BUFT 1, C4<11>, C4<0>, C4<0>, C4<0>;
+v0x640aeda77df0_0 .net/2u *"_ivl_2", 1 0, L_0x74a4e56d0018;  1 drivers
+v0x640aeda77ed0_0 .net "buttons_pressed", 3 0, L_0x640aeda31170;  1 drivers
+L_0x74a4e56d0138 .functor BUFT 1, C4<0000000000>, C4<0>, C4<0>, C4<0>;
+v0x640aeda77f90_0 .net "code", 9 0, L_0x74a4e56d0138;  1 drivers
+L_0x74a4e56d00f0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x640aeda78050_0 .net "next_sample", 0 0, L_0x74a4e56d00f0;  1 drivers
+L_0x640aeda78770 .concat8 [ 4 2 0 0], v0x640aeda76a40_0, L_0x74a4e56d0018;
+L_0x640aeda78840 .part o0x74a4e5a709d8, 1, 1;
+S_0x640aeda74290 .scope module, "bp" "button_parser" 5 24, 6 2 0, S_0x640aeda4fd80;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 4 "in";
+    .port_info 2 /OUTPUT 4 "out";
+P_0x640aeda00620 .param/l "PULSE_CNT_MAX" 0 6 5, +C4<00000000000000000000000011001000>;
+P_0x640aeda00660 .param/l "SAMPLE_CNT_MAX" 0 6 4, +C4<00000000000000001111010000100100>;
+P_0x640aeda006a0 .param/l "WIDTH" 0 6 3, +C4<00000000000000000000000000000100>;
+v0x640aeda76070_0 .net "clk", 0 0, o0x74a4e5a702b8;  alias, 0 drivers
+L_0x74a4e56d0060 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0x640aeda76110_0 .net "debounced_signals", 3 0, L_0x74a4e56d0060;  1 drivers
+v0x640aeda76220_0 .net "in", 3 0, o0x74a4e5a704f8;  alias, 0 drivers
+v0x640aeda762f0_0 .net "out", 3 0, L_0x640aeda31170;  alias, 1 drivers
+v0x640aeda763c0_0 .net "synchronized_signals", 3 0, L_0x640aeda30d70;  1 drivers
+S_0x640aeda746c0 .scope module, "button_debouncer" "debouncer" 6 26, 7 1 0, S_0x640aeda74290;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 4 "glitchy_signal";
+    .port_info 2 /OUTPUT 4 "debounced_signal";
+P_0x640aeda748c0 .param/l "PULSE_CNT_MAX" 0 7 4, +C4<00000000000000000000000011001000>;
+P_0x640aeda74900 .param/l "SAMPLE_CNT_MAX" 0 7 3, +C4<00000000000000001111010000100100>;
+P_0x640aeda74940 .param/l "SAT_CNT_WIDTH" 0 7 6, +C4<000000000000000000000000000001001>;
+P_0x640aeda74980 .param/l "WIDTH" 0 7 2, +C4<00000000000000000000000000000100>;
+P_0x640aeda749c0 .param/l "WRAPPING_CNT_WIDTH" 0 7 5, +C4<00000000000000000000000000010000>;
+v0x640aeda74d00_0 .net "clk", 0 0, o0x74a4e5a702b8;  alias, 0 drivers
+v0x640aeda74de0_0 .net "debounced_signal", 3 0, L_0x74a4e56d0060;  alias, 1 drivers
+v0x640aeda74ec0_0 .net "glitchy_signal", 3 0, L_0x640aeda30d70;  alias, 1 drivers
+S_0x640aeda75030 .scope module, "button_edge_detector" "edge_detector" 6 34, 4 1 0, S_0x640aeda74290;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 4 "signal_in";
+    .port_info 2 /OUTPUT 4 "edge_detect_pulse";
+P_0x640aeda75210 .param/l "WIDTH" 0 4 2, +C4<00000000000000000000000000000100>;
+L_0x640aeda31170 .functor BUFZ 4, v0x640aeda75520_0, C4<0000>, C4<0000>, C4<0000>;
+v0x640aeda75370_0 .net "clk", 0 0, o0x74a4e5a702b8;  alias, 0 drivers
+v0x640aeda75460_0 .net "edge_detect_pulse", 3 0, L_0x640aeda31170;  alias, 1 drivers
+v0x640aeda75520_0 .var "edp_buf", 3 0;
+v0x640aeda75610_0 .var "prev_state", 3 0;
+v0x640aeda756f0_0 .net "signal_in", 3 0, L_0x74a4e56d0060;  alias, 1 drivers
+E_0x640aeda585e0 .event posedge, v0x640aeda74d00_0;
+S_0x640aeda75860 .scope module, "button_synchronizer" "synchronizer" 6 16, 8 1 0, S_0x640aeda74290;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "async_signal";
+    .port_info 1 /INPUT 1 "clk";
+    .port_info 2 /OUTPUT 4 "sync_signal";
+P_0x640aeda75a70 .param/l "WIDTH" 0 8 1, +C4<00000000000000000000000000000100>;
+L_0x640aeda30d70 .functor BUFZ 4, v0x640aeda75e20_0, C4<0000>, C4<0000>, C4<0000>;
+v0x640aeda75b90_0 .net "async_signal", 3 0, o0x74a4e5a704f8;  alias, 0 drivers
+v0x640aeda75c70_0 .net "clk", 0 0, o0x74a4e5a702b8;  alias, 0 drivers
+v0x640aeda75d80_0 .var "ff_async", 3 0;
+v0x640aeda75e20_0 .var "ff_sync", 3 0;
+v0x640aeda75f00_0 .net "sync_signal", 3 0, L_0x640aeda30d70;  alias, 1 drivers
+S_0x640aeda76580 .scope module, "count" "counter" 5 30, 9 1 0, S_0x640aeda4fd80;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 4 "buttons";
+    .port_info 2 /OUTPUT 4 "leds";
+P_0x640aeda76760 .param/l "CYCLES_PER_SECOND" 0 9 2, +C4<00000111011100110101100101000000>;
+v0x640aeda76850_0 .net "buttons", 3 0, L_0x640aeda31170;  alias, 1 drivers
+v0x640aeda76980_0 .net "clk", 0 0, o0x74a4e5a702b8;  alias, 0 drivers
+v0x640aeda76a40_0 .var "counter", 3 0;
+v0x640aeda76ae0_0 .net "leds", 3 0, v0x640aeda76a40_0;  1 drivers
+S_0x640aeda76c40 .scope module, "dac" "dac" 5 41, 10 1 0, S_0x640aeda4fd80;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 10 "code";
+    .port_info 2 /OUTPUT 1 "next_sample";
+    .port_info 3 /OUTPUT 1 "pwm";
+P_0x640aeda76dd0 .param/l "CODE_WIDTH" 0 10 3, +C4<00000000000000000000000000001010>;
+P_0x640aeda76e10 .param/l "CYCLES_PER_WINDOW" 0 10 2, +C4<00000000000000000000010000000000>;
+v0x640aeda77020_0 .net "clk", 0 0, o0x74a4e5a702b8;  alias, 0 drivers
+v0x640aeda770c0_0 .net "code", 9 0, L_0x74a4e56d0138;  alias, 1 drivers
+v0x640aeda77180_0 .net "next_sample", 0 0, L_0x74a4e56d00f0;  alias, 1 drivers
+v0x640aeda77250_0 .net "pwm", 0 0, L_0x74a4e56d00a8;  alias, 1 drivers
+S_0x640aeda773c0 .scope module, "gen" "sq_wave_gen" 5 48, 11 1 0, S_0x640aeda4fd80;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "next_sample";
+    .port_info 2 /OUTPUT 10 "code";
+v0x640aeda77610_0 .net "clk", 0 0, o0x74a4e5a702b8;  alias, 0 drivers
+v0x640aeda776d0_0 .net "code", 9 0, L_0x74a4e56d0138;  alias, 1 drivers
+v0x640aeda77790_0 .net "next_sample", 0 0, L_0x74a4e56d00f0;  alias, 1 drivers
+    .scope S_0x640aeda52650;
+T_0 ;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x640aeda31710_0, 0, 2;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x640aeda31310_0, 0, 2;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x640aeda52650;
+T_1 ;
+    %wait E_0x640aeda585a0;
+    %load/vec4 v0x640aeda31710_0;
+    %inv;
+    %load/vec4 v0x640aeda32ff0_0;
+    %and;
+    %assign/vec4 v0x640aeda31310_0, 0;
+    %load/vec4 v0x640aeda32ff0_0;
+    %assign/vec4 v0x640aeda31710_0, 0;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x640aeda4fbf0;
+T_2 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x640aeda73eb0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x640aeda73fa0_0, 0, 1;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x640aeda741d0_0, 0, 32;
+    %end;
+    .thread T_2, $init;
+    .scope S_0x640aeda4fbf0;
+T_3 ;
+    %delay 4, 0;
+    %load/vec4 v0x640aeda73eb0_0;
+    %inv;
+    %store/vec4 v0x640aeda73eb0_0, 0, 1;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x640aeda4fbf0;
+T_4 ;
+    %vpi_call/w 3 28 "$dumpfile", "edge_detector_tb.fst" {0 0 0};
+    %vpi_call/w 3 29 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x640aeda4fbf0 {0 0 0};
+    %fork t_1, S_0x640aeda4fbf0;
+    %fork t_2, S_0x640aeda4fbf0;
+    %join;
+    %join;
+    %jmp t_0;
+t_1 ;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x640aeda74100_0, 0, 2;
+    %pushi/vec4 2, 0, 32;
+T_4.0 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_4.1, 5;
+    %jmp/1 T_4.1, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x640aeda585a0;
+    %jmp T_4.0;
+T_4.1 ;
+    %pop/vec4 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 2;
+    %store/vec4 v0x640aeda74100_0, 0, 2;
+    %pushi/vec4 5, 0, 32;
+T_4.2 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_4.3, 5;
+    %jmp/1 T_4.3, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x640aeda585a0;
+    %jmp T_4.2;
+T_4.3 ;
+    %pop/vec4 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x640aeda74100_0, 0, 2;
+    %pushi/vec4 5, 0, 32;
+T_4.4 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_4.5, 5;
+    %jmp/1 T_4.5, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x640aeda585a0;
+    %jmp T_4.4;
+T_4.5 ;
+    %pop/vec4 1;
+    %delay 1, 0;
+    %pushi/vec4 2, 0, 2;
+    %store/vec4 v0x640aeda74100_0, 0, 2;
+    %pushi/vec4 3, 0, 32;
+T_4.6 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_4.7, 5;
+    %jmp/1 T_4.7, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x640aeda585a0;
+    %jmp T_4.6;
+T_4.7 ;
+    %pop/vec4 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x640aeda74100_0, 0, 2;
+    %pushi/vec4 10, 0, 32;
+T_4.8 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_4.9, 5;
+    %jmp/1 T_4.9, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x640aeda585a0;
+    %jmp T_4.8;
+T_4.9 ;
+    %pop/vec4 1;
+    %delay 1, 0;
+    %load/vec4 v0x640aeda73fa0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_4.10, 8;
+    %vpi_call/w 3 49 "$error", "Testbench timeout" {0 0 0};
+    %vpi_call/w 3 50 "$fatal" {0 0 0};
+    %jmp T_4.11;
+T_4.10 ;
+    %vpi_call/w 3 53 "$display", "Testbench finished, errors: %d", v0x640aeda741d0_0 {0 0 0};
+T_4.11 ;
+    %end;
+t_2 ;
+    %wait E_0x640aeda58180;
+    %wait E_0x640aeda585a0;
+    %delay 1, 0;
+    %load/vec4 v0x640aeda74040_0;
+    %parti/s 1, 0, 2;
+    %cmpi/ne 0, 0, 1;
+    %jmp/0xz  T_4.12, 6;
+    %vpi_call/w 3 66 "$error", "Failure 1: Your edge detector's output wasn't 1 clock cycle wide" {0 0 0};
+    %load/vec4 v0x640aeda741d0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x640aeda741d0_0, 0, 32;
+T_4.12 ;
+    %wait E_0x640aeda22f30;
+    %wait E_0x640aeda585a0;
+    %delay 1, 0;
+    %load/vec4 v0x640aeda74040_0;
+    %parti/s 1, 1, 2;
+    %cmpi/ne 0, 0, 1;
+    %jmp/0xz  T_4.14, 6;
+    %vpi_call/w 3 74 "$error", "Failure 2: Your edge detector's output wasn't 1 clock cycle wide" {0 0 0};
+    %load/vec4 v0x640aeda741d0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x640aeda741d0_0, 0, 32;
+T_4.14 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x640aeda73fa0_0, 0, 1;
+    %end;
+    .scope S_0x640aeda4fbf0;
+t_0 ;
+    %vpi_call/w 3 84 "$finish" {0 0 0};
+    %end;
+    .thread T_4;
+    .scope S_0x640aeda4fbf0;
+T_5 ;
+    %wait E_0x640aeda40c80;
+    %vpi_call/w 3 88 "$display", "DEBUG: Detected rising edge at time %d", $time {0 0 0};
+    %jmp T_5;
+    .thread T_5;
+    .scope S_0x640aeda75860;
+T_6 ;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x640aeda75d80_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x640aeda75e20_0, 0, 4;
+    %end;
+    .thread T_6, $init;
+    .scope S_0x640aeda75860;
+T_7 ;
+    %wait E_0x640aeda585e0;
+    %load/vec4 v0x640aeda75b90_0;
+    %assign/vec4 v0x640aeda75d80_0, 0;
+    %load/vec4 v0x640aeda75d80_0;
+    %assign/vec4 v0x640aeda75e20_0, 0;
+    %jmp T_7;
+    .thread T_7;
+    .scope S_0x640aeda75030;
+T_8 ;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x640aeda75610_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x640aeda75520_0, 0, 4;
+    %end;
+    .thread T_8, $init;
+    .scope S_0x640aeda75030;
+T_9 ;
+    %wait E_0x640aeda585e0;
+    %load/vec4 v0x640aeda75610_0;
+    %inv;
+    %load/vec4 v0x640aeda756f0_0;
+    %and;
+    %assign/vec4 v0x640aeda75520_0, 0;
+    %load/vec4 v0x640aeda756f0_0;
+    %assign/vec4 v0x640aeda75610_0, 0;
+    %jmp T_9;
+    .thread T_9;
+    .scope S_0x640aeda76580;
+T_10 ;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x640aeda76a40_0, 0, 4;
+    %end;
+    .thread T_10, $init;
+    .scope S_0x640aeda76580;
+T_11 ;
+    %wait E_0x640aeda585e0;
+    %load/vec4 v0x640aeda76850_0;
+    %parti/s 1, 0, 2;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_11.0, 8;
+    %load/vec4 v0x640aeda76a40_0;
+    %addi 1, 0, 4;
+    %assign/vec4 v0x640aeda76a40_0, 0;
+    %jmp T_11.1;
+T_11.0 ;
+    %load/vec4 v0x640aeda76850_0;
+    %parti/s 1, 1, 2;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_11.2, 8;
+    %load/vec4 v0x640aeda76a40_0;
+    %subi 1, 0, 4;
+    %assign/vec4 v0x640aeda76a40_0, 0;
+    %jmp T_11.3;
+T_11.2 ;
+    %load/vec4 v0x640aeda76850_0;
+    %parti/s 1, 3, 3;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_11.4, 8;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x640aeda76a40_0, 0;
+    %jmp T_11.5;
+T_11.4 ;
+    %load/vec4 v0x640aeda76a40_0;
+    %assign/vec4 v0x640aeda76a40_0, 0;
+T_11.5 ;
+T_11.3 ;
+T_11.1 ;
+    %jmp T_11;
+    .thread T_11;
+# The file index is used to find the file name in the following table.
+:file_names 12;
+    "N/A";
+    "<interactive>";
+    "-";
+    "edge_detector_tb.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/edge_detector.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/z1top.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/button_parser.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/debouncer.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/synchronizer.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/counter.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/dac.v";
+    "/home/user/Workspace/digital/fpga_labs_fa22/lab3/src/sq_wave_gen.v";
