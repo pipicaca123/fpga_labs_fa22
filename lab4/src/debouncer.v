@@ -16,8 +16,42 @@ module debouncer #(
     // You need to think of the conditions for reseting, clock enable, etc. those registers
     // Refer to the block diagram in the spec
 
-    // Remove this line once you have created your debouncer
-    assign debounced_signal = 0;
+    reg [WRAPPING_CNT_WIDTH:0] wrapping_cnt;
+    reg [SAT_CNT_WIDTH:0] saturating_counter [WIDTH-1:0];
+    reg [WIDTH-1:0] debounce_buf = 0;
+    integer iter;
+    initial begin
+        wrapping_cnt = 0;
+        for(iter=0; iter < WIDTH; iter = iter +1) begin
+            saturating_counter[iter] = 0;
+        end
+    end
 
-    reg [SAT_CNT_WIDTH-1:0] saturating_counter [WIDTH-1:0];
+    always @(posedge clk) begin
+        // sample signal
+        wrapping_cnt = wrapping_cnt + 1;
+        if(wrapping_cnt >= SAMPLE_CNT_MAX) begin 
+            for(iter=0; iter < WIDTH; iter = iter + 1 ) begin
+                if(glitchy_signal[iter] == 1) begin
+                    saturating_counter[iter] = saturating_counter[iter] + 1;
+                end
+                else begin
+                    saturating_counter[iter] = 0;
+                end
+            end
+            wrapping_cnt = 0;
+        end
+
+        // debouncer output
+        for(iter=0; iter < WIDTH; iter = iter + 1 ) begin
+            if(saturating_counter[iter] >= PULSE_CNT_MAX) begin
+                debounce_buf[iter] = 1'b1;
+            end else begin
+                debounce_buf[iter] = 1'b0;
+            end            
+        end
+    end
+    assign debounced_signal = debounce_buf;
+
 endmodule
+

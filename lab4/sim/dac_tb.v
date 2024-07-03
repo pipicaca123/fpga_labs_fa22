@@ -1,3 +1,9 @@
+// origin testbench has timing bug in next_sample
+// NOTE:
+// in lab3's spec says:
+// "next_sample to tell the outside world that it can safely change the code before another pulse window begins."
+// but origin version didn't obey this setting.
+
 `timescale 1ns/1ns
 `define CLK_PERIOD 8
 
@@ -54,18 +60,31 @@ module dac_tb();
                 repeat (2) begin
                     code = 3;
                     @(posedge clk); #1;
-                    repeat (3) begin
+                    repeat (4) begin // fix
                         assert(pwm == 1) else $error("pwm should be 1 on first half of code = 3");
                         @(posedge clk); #1;
                     end
-                    repeat (4) begin
+                    repeat (3) begin // fix
                         assert(pwm == 0) else $error("pwm should be 0 on second half of code = 3");
                         @(posedge clk); #1;
                     end
                 end
+
+                repeat(2) begin
+                    code = 5;
+                    repeat (6) begin
+						@(posedge clk); #1;
+		                assert(pwm == 1) else $error("pwm should be 1 on first half of code = 5");
+					end
+                    repeat (2) begin
+						@(posedge clk); #1;
+					assert(pwm == 0) else $error("pwm should be 0 on first half of code = 5");
+					end   
+                end
             end
             // Thread to check next_sample
             begin
+                @(posedge clk); // fix next_sample timing bug
                 repeat (4) begin
                     assert(next_sample == 0) else $error("next_sample should start at 0");
                     repeat (7) @(posedge clk); #1;

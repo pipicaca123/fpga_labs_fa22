@@ -61,12 +61,18 @@ module dac_tb();
                     code = 2;
                     repeat (3) begin
 						@(posedge clk); #1;
-		                assert(pwm == 1) else $error("pwm should be 1 on first half of code = 3");
+		                assert(pwm == 1) else $error("pwm should be 1 on first half of code = 2");
 					end
                     repeat (5) begin
 						@(posedge clk); #1;
-					assert(pwm == 0) else $error("pwm should be 0 on first half of code = 3");
+					assert(pwm == 0) else $error("pwm should be 0 on first half of code = 2");
 					end
+                end
+
+                // my verify
+                code = 0;
+                repeat (8) begin
+                    @(posedge clk); #1;
                 end
             end
             // Thread to check next_sample
