@@ -28,7 +28,5 @@ module sq_wave_gen (
             code_buffer <= 462;
         else
             code_buffer <= 562;
-
-
     end 
 endmodule
