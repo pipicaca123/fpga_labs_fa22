@@ -67,6 +67,9 @@ module mem_controller #(
     case (curr_state)
 
       /* next state logic */
+      default:begin
+        
+      end
 
     endcase
 
@@ -79,7 +82,9 @@ module mem_controller #(
     case (curr_state)
 
       /* output and mem signal logic */
-      
+      default:begin
+        
+      end
     endcase
 
   end
