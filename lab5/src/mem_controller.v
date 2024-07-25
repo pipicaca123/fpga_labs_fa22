@@ -55,6 +55,7 @@ module mem_controller #(
   reg mem_rd_en_reg;
   reg tx_fifo_wr_en_reg;
   reg data_available;
+  reg rd_done;
 
   // data processor
   reg start_process; // trig by state combinational block
@@ -174,13 +175,16 @@ module mem_controller #(
     if(rst)begin
       pkt_rd_cnt <= 0;
       start_process <= 0;
+      rd_done<= 0;
     end
+
 
     if(curr_state == IDLE && !rx_fifo_empty && !start_process)begin
       rx_fifo_rd_en_reg <= 1;
       handshake <= 1;
       start_process <= 1;
       pkt_rd_cnt <= 0;
+      rd_done <= 0;
     end
     else if (curr_state == READ_CMD && !rx_fifo_empty)begin
       rx_fifo_rd_en_reg <= 1;
@@ -205,13 +209,23 @@ module mem_controller #(
     if(data_available)
       data_available <= 0;
 
-    if(data_available)begin
+    if(data_available && !rd_done)begin
         if(pkt_rd_cnt == 2 && cmd == READ_PKT)
           data_buf[pkt_rd_cnt] <= mem_dout;
         else
         data_buf[pkt_rd_cnt] <= din;
         pkt_rd_cnt <= pkt_rd_cnt + 1;
-        handshake <= 1;
+        rd_done = 1;
+        // handshake <= 1;
+    end
+    
+    // if(rd_done && !rx_fifo_empty)begin
+      if(rd_done)begin
+        if((curr_state == READ_CMD || curr_state == READ_ADDR && cmd == WRITE_PKT) && !rx_fifo_empty
+            ||curr_state == READ_ADDR && cmd == READ_PKT)begin
+          handshake <= 1;
+          rd_done <= 0;
+        end
     end
 
   end
