@@ -24,6 +24,9 @@ module fifo #(
     reg [WIDTH-1:0] dout_reg;
     reg [WIDTH-1:0] mem_buffer[DEPTH-1:0];
 
+    wire read_success = rd_en && !empty;
+    wire write_success = wr_en && !full;
+
     assign empty = bit_level == 0;
      /* verilator lint_off WIDTH */
     assign full = bit_level == DEPTH;
@@ -38,14 +41,25 @@ module fifo #(
         end
         if(wr_en && !full)begin
             write_ptr <= write_ptr + 1;
-            bit_level = bit_level + 1; // TODO: better discription?
             mem_buffer[write_ptr] <= din;
         end
         if(rd_en && !empty)begin
             read_ptr <= read_ptr + 1;
-            bit_level = bit_level - 1; // TODO: better discription?
             dout_reg <= mem_buffer[read_ptr];
         end
+
+        case({read_success, write_success})
+            2'b10: begin
+                bit_level <= bit_level - 1;
+            end
+            2'b01: begin
+                bit_level <= bit_level + 1;
+            end
+            default:begin
+                // bit_level <= bit_level; // r/w simutaneous or no both r/w
+            end
+        endcase
+
     end
 
 endmodule
