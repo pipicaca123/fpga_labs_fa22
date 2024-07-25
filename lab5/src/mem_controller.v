@@ -175,7 +175,7 @@ module mem_controller #(
     if(rst)begin
       pkt_rd_cnt <= 0;
       start_process <= 0;
-      rd_done<= 0;
+      rd_done = 0;
     end
 
 
@@ -184,7 +184,7 @@ module mem_controller #(
       handshake <= 1;
       start_process <= 1;
       pkt_rd_cnt <= 0;
-      rd_done <= 0;
+      rd_done = 0;
     end
     else if (curr_state == READ_CMD && !rx_fifo_empty)begin
       rx_fifo_rd_en_reg <= 1;
@@ -216,21 +216,19 @@ module mem_controller #(
         data_buf[pkt_rd_cnt] <= din;
         pkt_rd_cnt <= pkt_rd_cnt + 1;
         rd_done = 1;
-        // handshake <= 1;
     end
     
-    // if(rd_done && !rx_fifo_empty)begin
       if(rd_done)begin
         if((curr_state == READ_CMD || curr_state == READ_ADDR && cmd == WRITE_PKT) && !rx_fifo_empty
             ||curr_state == READ_ADDR && cmd == READ_PKT)begin
           handshake <= 1;
-          rd_done <= 0;
+          rd_done = 0;
         end
     end
 
   end
 
-  assign state_leds = 'd0;
+  assign state_leds = curr_state==IDLE?6'h0f:6'h00;
 
   assign rx_fifo_rd_en = rx_fifo_rd_en_reg;
   assign tx_fifo_wr_en = tx_fifo_wr_en_reg;
