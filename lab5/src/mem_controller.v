@@ -228,17 +228,19 @@ module mem_controller #(
 
   end
 
-  assign state_leds = curr_state==IDLE?6'h0f:6'h00;
+  assign state_leds = curr_state==IDLE?6'h3f:6'h00;
 
   assign rx_fifo_rd_en = rx_fifo_rd_en_reg;
   assign tx_fifo_wr_en = tx_fifo_wr_en_reg;
   assign dout = data;
 
-  assign cmd = data_buf[0];
-  assign addr = data_buf[1];
-  assign data = data_buf[2];
+  always @(*) begin
+    cmd = data_buf[0];
+    addr = data_buf[1];
+    data = data_buf[2];
 
-  assign mem_addr = addr;
-  assign mem_din = data;
+    mem_addr = addr;
+    mem_din = data;
+  end
 
 endmodule

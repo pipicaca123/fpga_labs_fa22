@@ -33,10 +33,12 @@ module uart_transmitter #(
     assign tx_running = bit_counter != 4'd0;
     assign serial_send = data_in_ready && data_in_valid;
     assign data_in_ready = !tx_running;
-
-    assign tx_shift[8:1] = data_buf;
-    assign tx_shift[0] = 1'b0;
-    assign tx_shift[9] = 1'b1;
+    
+    always @(*) begin
+        tx_shift[8:1] = data_buf;
+        tx_shift[0] = 1'b0;
+        tx_shift[9] = 1'b1; 
+    end
 
     always @(posedge clk) begin
         clock_counter <= (serial_send || reset || symbol_edge) ? 0 : clock_counter + 1;
