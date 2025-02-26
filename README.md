@@ -1,3 +1,5 @@
+# NOTE
+my own develop should put in 'my_dev' branch, master should not be modify in all the time!
 # EECS151/251A FPGA Labs FA22
 
 For each lab, please find the instructions at **/lab#/spec/spec.md**
